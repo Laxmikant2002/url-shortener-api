@@ -30,3 +30,74 @@ This is a URL Shortener API built with Node.js, Express, and MongoDB. It allows 
 Start the application using the following command:
 ```sh
 npm start
+
+The server will start on port `8001`.
+
+## API Endpoints
+
+### Generate Short URL
+
+- **URL:** `/url`
+- **Method:** `POST`
+- **Request Body:**
+- **Response:**
+    ```json
+    {
+        "id": "shortId"
+    }
+    ```
+
+### Get URL Analytics
+
+- **URL:** `/url/analytics/:shortId`
+- **Method:** `GET`
+- **Response:**
+    ```json
+    {
+        "totalClicks": 5,
+        "analytics": [
+            { "timestamp": 1633024800000 },
+            { "timestamp": 1633028400000 }
+        ]
+    }
+    ```
+
+### Redirect to Original URL
+
+- **URL:** `/:shortId`
+- **Method:** `GET`
+- **Response:** Redirects to the original URL.
+
+## Sample Requests/Responses
+
+### Generate Short URL
+
+**Request:**
+```sh
+curl -X POST http://localhost:8001/url -H "Content-Type: application/json" -d '{"url": "https://example.com"}'
+```
+
+**Response:**
+```json
+{
+    "id": "shortId"
+}
+```
+
+### Get URL Analytics
+
+**Request:**
+```sh
+curl http://localhost:8001/url/analytics/shortId
+```
+
+**Response:**
+```json
+{
+    "totalClicks": 5,
+    "analytics": [
+        { "timestamp": 1633024800000 },
+        { "timestamp": 1633028400000 }
+    ]
+}
+```
